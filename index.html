@@ -109,6 +109,18 @@
   }
 
   /* ---------- Header ---------- */
+  /* ---------- Announcement banner ---------- */
+  .announce{
+    background:var(--green-ink);
+    color:#fff;
+    text-align:center;
+    font-size:.95rem;
+    padding:.75rem 16px;
+  }
+  .announce[hidden]{ display:none; }
+  .announce b{ font-weight:700; }
+  .announce a{ color:#fff; text-decoration:underline; text-underline-offset:2px; }
+
   header.site{
     position:sticky;
     top:0;
@@ -697,6 +709,10 @@
 </head>
 <body>
 
+<div class="announce" id="announceBanner" data-until="2026-11-02" hidden>
+  <b>Fundraiser Sun, Nov 1:</b> Dix Hills Stop &amp; Shop, 10am-2pm. Come say hi! <a href="#events">Details</a>
+</div>
+
 <header class="site">
   <div class="wrap nav-row">
     <a class="brand" href="#top">
@@ -939,6 +955,7 @@
         <div class="events-col upcoming">
           <h3>Upcoming</h3>
           <ul class="ledger-list">
+            <li class="ledger-row"><span class="date">NOV 1 2026</span><span class="what"><b>Dix Hills Stop &amp; Shop</b> - Fundraiser, 10-2</span></li>
             <li class="ledger-row"><span class="date">NOV 2025</span><span class="what"><b>HHH HS East</b> - Government Shutdown Drive</span></li>
             <li class="ledger-row"><span class="date">JAN 2026</span><span class="what"><b>Half Hollow Hills Community Library</b></span></li>
             <li class="ledger-row"><span class="date">MAR 2026</span><span class="what"><b>HHH HS East</b> - Math Honor Society</span></li>
@@ -990,6 +1007,11 @@
 </footer>
 
 <script>
+  (function(){
+    var banner = document.getElementById('announceBanner');
+    if (banner && new Date() < new Date(banner.dataset.until + 'T00:00:00')) banner.hidden = false;
+  })();
+
   (function(){
     var toggle = document.getElementById('navToggle');
     var nav = document.getElementById('primaryNav');
